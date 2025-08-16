@@ -66,7 +66,7 @@ db.Users.countDocuments(); //모든 레코드 수 반환 셸 코드
 
 <img width="529" height="97" alt="스크린샷 2025-08-16 오전 11 06 37" src="https://github.com/user-attachments/assets/a8b348c8-8064-4123-9eb0-1591d4d34ca8" />
 
-_id인 경우 고유의 컬럼과 고유키값을 갖으니 상관은 없지만, _class는 문제가 발생 할 수 있다고 한다. 해서 찾아본 결과로
+_id인 경우 고유의 컬럼과 고유키값을 갖으니 상관은 없지만, _class는 동시성 문제가 발생 할 수 있다고 한다. 해서 찾아본 결과로
 ```java
 @Configuration
 public class MongodbConfig {
