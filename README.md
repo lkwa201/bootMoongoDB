@@ -62,3 +62,25 @@ public class User {
 db.Users.find({"username":"홍길동"}) //단일 레코드 검색 셸 코드
 db.Users.countDocuments(); //모든 레코드 수 반환 셸 코드
 ```
+위 엔티티 코드대로 생성되면 내가 의도치 않게 몽고DB에서 다음과 같이 두 개의 컬럼을 추가 한다.
+
+<img width="529" height="97" alt="스크린샷 2025-08-16 오전 11 06 37" src="https://github.com/user-attachments/assets/a8b348c8-8064-4123-9eb0-1591d4d34ca8" />
+
+_id인 경우 고유의 컬럼과 고유키값을 갖으니 상관은 없지만, _class는 문제가 발생 할 수 있다고 한다. 해서 찾아본 결과로
+```java
+@Configuration
+public class MongodbConfig {
+
+    @Bean
+    public MappingMongoConverter mappingMongoConverter(
+            MongoDatabaseFactory mongoDatabaseFactory,
+            MongoMappingContext mongoMappingContext
+    ) {
+        DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDatabaseFactory);
+        MappingMongoConverter converter = new MappingMongoConverter(dbRefResolver, mongoMappingContext);
+        converter.setTypeMapper(new DefaultMongoTypeMapper(null));  
+        return converter;
+    }
+}
+```
+위의 컨피그 파일을 작성해 주면 _class 컬럼 생성이 되지 않는다고 한다. 필자는 아직 테스트 안해 봄.
