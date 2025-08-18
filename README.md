@@ -85,6 +85,7 @@ public class MongodbConfig {
 ```
 
 위의 컨피그 파일을 작성해 주면 _class 컬럼 생성이 되지 않는다고 한다. 필자는 아직 테스트 안해 봄.
+
 --
 ## https://kotlinworld.com/556 ### (feat. chatGPT)
 해당 블로그 글에선 프로퍼티 설정을 보기 위해 찾아 본 글이면서, chatGpt의 도움을 따로 받기도 하였다.
